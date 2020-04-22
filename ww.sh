@@ -4,6 +4,9 @@ set -eu
 # determine the current day of the week
 day=$(date +%w)
 
+# default to no extension
+ext=
+
 # there is only one True date format
 fmt=+%Y-%m-%d
 
@@ -13,12 +16,14 @@ for arg in "$@"; do
     case "$arg" in
         -n|--next)
         week=next
-        fl_next=1
         ;;
 
         -l|--last)
         week=last
-        fl_last=1
+        ;;
+
+        -e=*|--ext=*)
+        ext=".${arg#*=}"
         ;;
 
         *)
@@ -46,7 +51,7 @@ out() {
         local week="+1 week"
     fi
 
-    echo $(date -d "$week $dow" $fmt)
+    echo $(date -d "$week $dow" $fmt)$ext
 }
 
 out mon

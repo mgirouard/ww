@@ -24,3 +24,7 @@ my terminal to recall notes from last week or plan ahead for the coming week.
 
 	# Next week
 	$ vim -o $(ww --next)
+
+I prefer to work in Markdown.
+
+	$ vim -o $(ww --ext=md)
