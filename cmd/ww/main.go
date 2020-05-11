@@ -27,5 +27,10 @@ func main() {
 	w.Saturday = *a
 	w.Sunday = *u
 	w.Range = *r
+
+	args := flag.Args()
+	if len(args) > 0 {
+		w.Format = args[0]
+	}
 	fmt.Println(w.String())
 }
