@@ -19,13 +19,13 @@ help with planning. I keep three splits in my terminal to recall notes from
 last week or plan ahead for the coming week.
 	
 	# Last week
-	$ vim -o $(ww --last)
+	$ vim -o $(ww -l)
 
 	# This week
 	$ vim -o $(ww)
 
 	# Next week
-	$ vim -o $(ww --next)
+	$ vim -o $(ww -n)
 
 A format can be specified to simplify working with specific file types or
 arbitrary paths. It's format string is strange, but at least it's documented in
@@ -33,9 +33,16 @@ arbitrary paths. It's format string is strange, but at least it's documented in
 
 	$ vim -o $(ww Documents/2006-01-02.md)
 
-I can never remember it, so I keep a dotfile to remember it for me:
+You shouldn't work weekends, but sometimes that might happen. Don't make too
+much of a habit of it.
 
-	$ cat ~/.ww.yaml
-	format: Documents/2006-01-02.md
+	$ ww -u -a
+	2020-04-19
+	2020-04-20
+	2020-04-21
+	2020-04-22
+	2020-04-23
+	2020-04-24
+	2020-04-25
 
 [Time.Format]: https://golang.org/pkg/time/#Time.Format

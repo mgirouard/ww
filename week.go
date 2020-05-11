@@ -19,8 +19,7 @@ type Week struct {
 	Range     bool
 }
 
-func NewWeek() *Week {
-	s := time.Now()
+func NewWeek(s time.Time) *Week {
 	d := int(s.Weekday())
 	if d != 0 {
 		s = s.AddDate(0, 0, -d)
