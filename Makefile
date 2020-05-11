@@ -19,4 +19,4 @@ bin/$(NAME): $(shell find . -name *.go)
 	go build -o $@ -v github.com/mgirouard/ww/cmd/ww
 
 $(PREFIX)/$(NAME): bin/$(NAME)
-	cp ww.sh $(PREFIX)/$(NAME)
+	cp $^ $(PREFIX)/$(NAME)
