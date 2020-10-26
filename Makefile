@@ -1,22 +1,22 @@
-.PHONY: build clean install uninstall
+.PHONY: all clean test
 
+export GOPATH ?= $(shell go env GOPATH)
 export GO111MODULE=on
+export GOFLAGS=-mod=vendor
 
-PREFIX ?= $(HOME)/bin
-NAME   ?= ww
-
-build: bin/$(NAME)
+all: cow
 
 clean:
-	$(RM) -r bin
+	$(RM) cow tags
 
-install: $(PREFIX)/$(NAME)
+test:
+	go test -v .
 
-uninstall:
-	$(RM) $(PREFIX)/$(NAME)
+cow:
+	go build -v -o $@ .
 
-bin/$(NAME): $(shell find . -name *.go)
-	go build -o $@ -v github.com/mgirouard/ww/cmd/ww
+tags: $(GOPATH)/bin/gotags
+	$< -R -f $@ .
 
-$(PREFIX)/$(NAME): bin/$(NAME)
-	cp $^ $(PREFIX)/$(NAME)
+$(GOPATH)/bin/gotags:
+	go get -u github.com/jstemmer/gotags

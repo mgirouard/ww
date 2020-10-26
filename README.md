@@ -1,48 +1,31 @@
-# ww
+# `cow` is a different kind of `cal`
 
-`ww` is a dumb little tool that tells you the dates for the work week.
+    $ go get github.com/mgirouard/cow
 
-	$ go get github.com/mgirouard/ww
-	$ ww
-	2020-04-20
-	2020-04-21
-	2020-04-22
-	2020-04-23
-	2020-04-24
+Default command renders a cal-like calendar:
 
-It's most useful when you keep a work journal.
+    $ cow
+        October 2020
+    Su Mo Tu We Th Fr Sa
+                 1  2  3
+     4  5  6  7  8  9 10
+    11 12 13 14 15 16 17
+    18 19 20 21 22 23 24
+    25 26 27 28 29 30 31
 
-	$ vim -o $(ww)
+Cow is more than cal. Cow outputs a list of dates and assumes you want to do
+stuff with that list.
 
-On Mondays and Fridays it's useful to compare the current week with another to
-help with planning. I keep three splits in my terminal to recall notes from
-last week or plan ahead for the coming week.
+    $ cow -f %Y%m%d.md | touch
+
+Run `cow help` for info and examples.
+
+## Hacking
+
+To build all the things:
+
+	$ make
+
+If you use ctags:
 	
-	# Last week
-	$ vim -o $(ww -l)
-
-	# This week
-	$ vim -o $(ww)
-
-	# Next week
-	$ vim -o $(ww -n)
-
-A format can be specified to simplify working with specific file types or
-arbitrary paths. It's format string is strange, but at least it's documented in
-[Time.Format].
-
-	$ vim -o $(ww Documents/2006-01-02.md)
-
-You shouldn't work weekends, but sometimes that might happen. Don't make too
-much of a habit of it.
-
-	$ ww -u -a
-	2020-04-19
-	2020-04-20
-	2020-04-21
-	2020-04-22
-	2020-04-23
-	2020-04-24
-	2020-04-25
-
-[Time.Format]: https://golang.org/pkg/time/#Time.Format
+	$ make tags
